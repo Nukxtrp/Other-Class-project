@@ -16,7 +16,7 @@ init_sqlite_db()
 
 @app.route("/")
 def home():
-    return render_template("Home.html")
+    return render_template("Home.html", username=session.get('username'))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -64,6 +64,12 @@ def register():
             return redirect(url_for('register'))
 
     return render_template("register.html")
+
+@app.route("/logout")
+def logout():
+    session.pop('username', None)
+    flash("Logged out successfully!")
+    return redirect(url_for("home"))
 
 if __name__ == '__main__':
     app.run(debug=True)

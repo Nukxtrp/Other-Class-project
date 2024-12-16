@@ -15,7 +15,7 @@
             background-color: #4CAF50;
             overflow: hidden;
             padding: 10px;
-            text-align: right; /* Aligns items to the right */
+            text-align: right;
         }
 
         .topnav a {
@@ -23,9 +23,9 @@
         }
 
         .topnav button {
-            background-color: #4CAF50; /* Change to green */
+            background-color: #4CAF50;
             border: 2px solid #4CAF50;
-            color: white; /* Change to white */
+            color: white;
             padding: 10px 20px;
             margin: 5px;
             border-radius: 5px;
@@ -34,8 +34,8 @@
         }
 
         .topnav a:nth-child(2) button {
-            background-color: white; /* Change to white */
-            color: #4CAF50; /* Change to green */
+            background-color: white;
+            color: #4CAF50;
         }
 
         .topnav button:hover {
@@ -76,12 +76,19 @@
 </head>
 <body>
     <div class="topnav">
-        <a href="/login">
-            <button>Login</button>
-        </a>
-        <a href="/register">
-            <button>Sign Up</button>
-        </a>
+        {% if username %}
+            <span>Welcome, {{ username }}!</span>
+            <a href="{{ url_for('logout') }}">
+                <button>Logout</button>
+            </a>
+        {% else %}
+            <a href="{{ url_for('login') }}">
+                <button>Login</button>
+            </a>
+            <a href="{{ url_for('register') }}">
+                <button>Sign Up</button>
+            </a>
+        {% endif %}
     </div>
 
     <div class="container">
