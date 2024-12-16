@@ -21,17 +21,17 @@ def home():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form['username']
-        password = request.form['password']
+        Username = request.form['username']
+        Password = request.form['password']
 
         conn = sqlite3.connect('user_database.db')
         c = conn.cursor()
-        c.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+        c.execute("SELECT * FROM users WHERE username = ? AND password = ?", (Username, Password))
         user = c.fetchone()
         conn.close()
 
         if user:
-            session['username'] = username
+            session['username'] = Username
             flash("Login successful!")
             return redirect(url_for("home"))
         else:
@@ -43,18 +43,18 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form['username']
-        password = request.form['password']
-        password_verify = request.form['password_verify']
+        Username = request.form['username']
+        Password = request.form['password']
+        Correct_Pass = request.form['password_verify']
 
-        if password != password_verify:
+        if Password != Correct_Pass:
             flash("Passwords do not match!")
             return redirect(url_for('register'))
 
         try:
             conn = sqlite3.connect('user_database.db')
             c = conn.cursor()
-            c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+            c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (Username, Password))
             conn.commit()
             conn.close()
             flash("Registration successful! Please log in.")
