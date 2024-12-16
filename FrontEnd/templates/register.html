@@ -75,21 +75,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Register</h1>
-        <form method="post" action="{{ url_for('login') }}">
+        <h1>Sign Up</h1>
+        <form method="post" action="{{ url_for('register') }}">
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
-            <br />
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
-            <br />
-            <label for="password"><b>Verify Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <br />
-            <a href="/"></a>
+            <label for="password_verify"><b>Verify Password</b></label>
+            <input type="password" placeholder="Verify Password" name="password_verify" required>
             <button type="submit">Sign Up</button>
             <a href="/">Back to Home</a>
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
 </html>
