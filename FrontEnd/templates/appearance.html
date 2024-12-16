@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appearance Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #f9f9f9;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .settings-section {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Appearance Settings</h1>
+    <div class="settings-section dark-mode-toggle">
+        <p>Dark Mode</p>
+        <label class="switch">
+            <input type="checkbox" id="modeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <a href="/"> Back to Home</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleSwitch = document.getElementById('modeToggle');
+
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (toggleSwitch) {
+                    toggleSwitch.checked = true;
+                }
+            }
+
+            if (toggleSwitch) {
+                toggleSwitch.addEventListener('change', () => {
+                    if (toggleSwitch.checked) {
+                        document.body.classList.add('dark-mode');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.body.classList.remove('dark-mode');
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

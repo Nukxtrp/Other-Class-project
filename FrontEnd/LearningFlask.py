@@ -75,5 +75,9 @@ def logout():
 def settings():
     return render_template("settings.html")
 
+@app.route("/appearance")
+def appearance():
+    return render_template("appearance.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
