@@ -71,5 +71,9 @@ def logout():
     flash("Logged out successfully!")
     return redirect(url_for("home"))
 
+@app.route("/settings")
+def settings():
+    return render_template("settings.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
